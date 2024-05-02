@@ -1,64 +1,45 @@
-# Assignment 4 - The Game of Life
+# Game of Life
 
-The program **life.c** will be implementing the **Two-dimensional (2-D) grid of cells that represents a universe.**
+### Overview
+The Game of Life, a cellular automaton devised by the mathematician John Horton Conway, simulates a zero-player game where evolution is determined by its initial state, requiring no further input. This project implements Conway's Game of Life in C, allowing users to initiate a state and observe its evolution based on simple rules that create complex behaviors over time.
 
-## Files In The Repository
-1. Makefile
-2. DESIGN.pdf
-3. WRITEUP.pdf
-4. README.md
-5. universe.h
-6. universe.c
-7. life.c
+### Features
+- **Dynamic Grid Implementation**: Utilizes a 2D grid where each cell is either alive or dead.
+- **Toroidal Option**: Supports both flat and toroidal grid configurations.
+- **Customizable Initial States**: Users can set the game's initial state from a file.
+- **Generational Evolution**: Simulates the user-defined number of generations.
+- **Visualization**: Offers optional visualization using ncurses for real-time simulation.
 
-# Make commands
+### Rules of the Game
+1. **Survival**: A live cell with two or three live neighbors survives to the next generation.
+2. **Birth**: A dead cell with exactly three live neighbors becomes a live cell.
+3. **Death**: All other live cells die in the next generation due to underpopulation or overcrowding.
 
-```
-$ make clean
-```
-This command will make the repository clean by deleting the object file and executable file of **life.c**.
+### Setup and Usage
+- Compile the game using the provided Makefile.
+- Run the game using:
+  ```bash
+  ./gameoflife -options
+  ```
+- Options include:
+  - `-t`: Run the game on a toroidal universe.
+  - `-s`: Silence mode, no ncurses visualization.
+  - `-n [generations]`: Set the number of generations.
+  - `-i [input file]`: Specify initial configuration.
+  - `-o [output file]`: Specify output file for final state.
 
+### How It Works
+- The game initializes the universe based on input configurations.
+- It computes the next state of each cell based on the rules of survival, birth, and death.
+- Updates the grid each generation and optionally displays the grid using ncurses.
+- Outputs the final state of the universe after the specified number of generations.
 
-```
-$ make format
-```
-
-This command will format C file into clang format.
-
-```
-$ make
-```
-
-This command will just compile other C files and make the executable and object file for **life.c**.
-
-## Running the program
-
-```
-$ make
-```
-1. This command will just compile and make the executable and object file for **life.c**.
-
-```
-$ ./life -flag
-```
-
-2. flags = t,s,h,n,i and o you can pass one or many flags together.
-
-### Flags
-
--t
-: Create your universe as a toroidal.
-
--s
-: Silent - do not use animate the evolution
-
--n {number}
-: Number of generations [default: 100]
-
--i {file}
-: Input file [default: stdin]
-
--o {file}
-: Output file [default: stdout]
+### Building and Running
+- **Build**: Use the Makefile for building the project with `make all`.
+- **Run**: Execute with `./gameoflife` followed by any required options.
 
 
+### Documentation
+- **README.md**: Instructions and overview.
+- **DESIGN.pdf**: Detailed design document describing architecture and implementation.
+- **WRITEUP.pdf**: Reflections and learning from the project development.
